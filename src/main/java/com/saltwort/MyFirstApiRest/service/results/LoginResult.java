@@ -1,7 +1,6 @@
-package com.saltwort.MyFirstApiRest.service;
+package com.saltwort.MyFirstApiRest.service.results;
 
 import com.saltwort.MyFirstApiRest.dto.response.UserDto;
-import com.saltwort.MyFirstApiRest.model.User;
 
 public class LoginResult {
     private final UserDto user;

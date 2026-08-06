@@ -8,10 +8,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserConfigurationDto {
-    private Long id;
-    private Long theme;
-    private Long language;
-    private Long notification;
-    private Long fkUser;
+public class ListDto {
+    private String detail;
+    private Long disabled;
+    private String name;
+    private Long priority;
+    private Long showAmount;
+    private Long showHome;
+    private User user;
 }

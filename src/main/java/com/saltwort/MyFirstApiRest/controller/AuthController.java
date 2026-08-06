@@ -2,7 +2,7 @@ package com.saltwort.MyFirstApiRest.controller;
 
 import com.saltwort.MyFirstApiRest.dto.request.LoginRequestDto;
 import com.saltwort.MyFirstApiRest.service.AuthService;
-import com.saltwort.MyFirstApiRest.service.LoginResult;
+import com.saltwort.MyFirstApiRest.service.results.LoginResult;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,12 +25,4 @@ public class AuthController {
         return "Login successful!";
     }
 
-    @PostMapping("/register")
-    public String register(@Valid @RequestBody LoginRequestDto bodyParams) {
-        boolean result = this.authService.register(bodyParams);
-        if (!result) {
-            return "Registration failed";
-        }
-        return "Registration successful!";
-    }
 }

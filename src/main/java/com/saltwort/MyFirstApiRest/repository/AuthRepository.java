@@ -4,14 +4,13 @@ import com.saltwort.MyFirstApiRest.config.AppConstants;
 import com.saltwort.MyFirstApiRest.dto.request.LoginRequestDto;
 import com.saltwort.MyFirstApiRest.dto.response.UserDto;
 import com.saltwort.MyFirstApiRest.model.User;
-import com.saltwort.MyFirstApiRest.service.LoginResult;
+import com.saltwort.MyFirstApiRest.service.results.LoginResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import com.saltwort.MyFirstApiRest.service.JwtService;
 
 import java.util.Optional;
-
 
 @Repository
 public class AuthRepository {
@@ -48,6 +47,11 @@ public class AuthRepository {
 
     public String encryptValue(String value) {
         return jwtService.encryptValue(value);
+    }
+
+    public User registerUser(User user) {
+        user.setPassword(encryptValue(user.getPassword()));
+        return userRepository.save(user);
     }
 
 }
