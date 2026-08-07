@@ -88,8 +88,30 @@ public class ConvertEntitiesDto {
         );
     }
 
+    public ListDto[] constructListDtoArray(List[] lists) {
+        ListDto[] listsDto = new ListDto[lists.length];
+        for (int i = 0; i < lists.length; i++) {
+            listsDto[i] = constructListDto(lists[i]);
+        }
+        return listsDto;
+    }
+
+    public ListDto constructListDto(ListDto record) {
+        return new ListDto(
+                record.getId(),
+                record.getDetail(),
+                record.getDisabled(),
+                record.getName(),
+                record.getPriority(),
+                record.getShowAmount(),
+                record.getShowHome(),
+                record.getFkUser()
+        );
+    }
+
     public ListDto constructListDto(List list) {
         return new ListDto(
+                list.getId(),
                 list.getDetail(),
                 list.getDisabled(),
                 list.getName(),

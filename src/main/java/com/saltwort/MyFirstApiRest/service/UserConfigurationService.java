@@ -30,4 +30,8 @@ public class UserConfigurationService {
         return this.save(userConfiguration);
     }
 
+
+    public UserConfiguration findByUserId(Long fkUser) {
+        return userConfigurationRepository.findByUserId(fkUser).orElse(null);
+    }
 }

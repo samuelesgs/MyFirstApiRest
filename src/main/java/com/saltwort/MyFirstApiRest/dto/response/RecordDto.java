@@ -7,13 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ListDto {
+public class RecordDto {
     private Long id;
-    private String detail;
-    private Long disabled;
+    private double amount;
+    private Long complete;
     private String name;
-    private Long priority;
-    private Long showAmount;
-    private Long showHome;
-    private Long fkUser;
+    private double currentRecords;
+    private double totalRecords;
+    private Long fkList;
 }

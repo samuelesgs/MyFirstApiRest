@@ -26,8 +26,11 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
-        // rutas públicas: login y register no requieren token
-        if (path.startsWith("/api/auth") || path.startsWith("/api/register")) {
+        // rutas públicas: no requieren token
+        if (path.startsWith("/api/auth")
+                || path.startsWith("/api/register")
+                || path.startsWith("/swagger-ui")
+                || path.startsWith("/v3/api-docs")) {
             filterChain.doFilter(request, response);
             return;
         }

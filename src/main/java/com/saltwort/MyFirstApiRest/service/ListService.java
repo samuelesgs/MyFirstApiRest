@@ -51,4 +51,8 @@ public class ListService {
         }
         return null;
     }
+
+    public List[] findByUserId(Long fkUser) {
+        return listRepository.findByUserId(fkUser).toArray(new List[0]);
+    }
 }
