@@ -1,6 +1,5 @@
 package com.saltwort.MyFirstApiRest.dto.response;
 
-import com.saltwort.MyFirstApiRest.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,5 +14,5 @@ public class ListDto {
     private Long priority;
     private Long showAmount;
     private Long showHome;
-    private User user;
+    private Long fkUser;
 }

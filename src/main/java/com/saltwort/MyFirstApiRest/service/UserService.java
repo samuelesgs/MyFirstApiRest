@@ -5,6 +5,7 @@ import com.saltwort.MyFirstApiRest.dto.response.UserDto;
 import com.saltwort.MyFirstApiRest.model.User;
 import com.saltwort.MyFirstApiRest.repository.AuthRepository;
 import com.saltwort.MyFirstApiRest.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,5 +34,25 @@ public class UserService {
 
     public User findById(Long fkUser) {
         return userRepository.findById(fkUser).orElse(null);
+    }
+
+    public User updatePassword(Long id, String newPassword) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user != null) {
+            user.setPassword(authRepository.encryptValue(newPassword));
+            user.setDateUpdate(LocalDateTime.now());
+            return userRepository.save(user);
+        }
+        return null;
+    }
+
+    public User updateUser(Long id, UserDto bodyParams) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user != null) {
+            user.setName(bodyParams.getName());
+            user.setDateUpdate(LocalDateTime.now());
+            return userRepository.save(user);
+        }
+        return null;
     }
 }

@@ -4,12 +4,18 @@ import com.saltwort.MyFirstApiRest.dto.request.LoginRequestDto;
 import com.saltwort.MyFirstApiRest.dto.response.ListDto;
 import com.saltwort.MyFirstApiRest.dto.response.UserConfigurationDto;
 import com.saltwort.MyFirstApiRest.dto.response.UserDto;
+import com.saltwort.MyFirstApiRest.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
 @Component
 public class ConvertEntitiesDto {
+    private final UserRepository userRepository;
+
+    public ConvertEntitiesDto(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public LoginRequestDto constructAuthenticationDto(String email, String password) {
         return new LoginRequestDto(
@@ -47,7 +53,8 @@ public class ConvertEntitiesDto {
         list.setPriority(record.getPriority());
         list.setShowAmount(record.getShowAmount());
         list.setShowHome(record.getShowHome());
-        list.setUser(record.getUser());
+        User user = userRepository.findById(record.getFkUser()).orElse(null);
+        list.setUser(user);
         list.setDateInsert(LocalDateTime.now());
         list.setDateUpdate(LocalDateTime.now());
         return list;
@@ -81,7 +88,6 @@ public class ConvertEntitiesDto {
         );
     }
 
-
     public ListDto constructListDto(List list) {
         return new ListDto(
                 list.getDetail(),
@@ -90,7 +96,7 @@ public class ConvertEntitiesDto {
                 list.getPriority(),
                 list.getShowAmount(),
                 list.getShowHome(),
-                list.getUser()
+                list.getUser().getId()
         );
     }
 }

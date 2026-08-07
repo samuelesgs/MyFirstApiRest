@@ -1,6 +1,7 @@
 package com.saltwort.MyFirstApiRest.controller;
 
 import com.saltwort.MyFirstApiRest.dto.request.RegisterRequestDto;
+import com.saltwort.MyFirstApiRest.dto.response.ApiResponse;
 import com.saltwort.MyFirstApiRest.service.RegisterService;
 import com.saltwort.MyFirstApiRest.service.results.RegisterResultComplete;
 import jakarta.validation.Valid;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/register")
+@RequestMapping("/api/register")
 public class RegisterController {
     private final RegisterService register;
 
@@ -20,11 +21,11 @@ public class RegisterController {
 
 
     @PostMapping("/new-user")
-    public String register(@Valid @RequestBody RegisterRequestDto bodyParams) {
+    public ApiResponse<RegisterResultComplete> register(@Valid @RequestBody RegisterRequestDto bodyParams) {
         RegisterResultComplete result = this.register.register(bodyParams);
         if (result == null) {
-            return "Registration failed";
+            return ApiResponse.error("Registration failed", 400);
         }
-        return "Registration successful!";
+        return ApiResponse.success(result);
     }
 }

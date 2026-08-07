@@ -1,5 +1,6 @@
 package com.saltwort.MyFirstApiRest.config;
 
+import io.jsonwebtoken.Jwts;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
